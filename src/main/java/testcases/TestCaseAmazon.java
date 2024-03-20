@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import pageObjects.FormPageAmazon;
 
@@ -22,7 +23,10 @@ public class TestCaseAmazon {
 	@Before
 	public void setUp() throws Exception {
 		System.setProperty("webdriver.chrome.driver", "C:\\Path\\chromedriver.exe");
-		driver = new ChromeDriver();
+		// ChomeOptions: headless - It makes it so the test does not open a window
+		ChromeOptions options = new ChromeOptions();
+    options.addArguments("headless");
+		driver = new ChromeDriver(options);
 		driver.manage().window().maximize();
 		pageObject = new FormPageAmazon(driver);
 	}
